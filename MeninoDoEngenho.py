@@ -31,15 +31,7 @@ while True:
         if event.type == QUIT:
             pygame.quit()
             exit()
-        '''if event.type == KEYDOWN:
-            if event.key == K_a:
-                x = x - 20
-            if event.key == K_d:
-                x = x + 20
-            if event.key == K_w:
-                y = y - 20
-            if event.key == K_s:
-                y = y + 20'''
+
     if pygame.key.get_pressed()[K_a]:
         x = x - 2.5
         sprite("sprite_esquerda", largura=26)
