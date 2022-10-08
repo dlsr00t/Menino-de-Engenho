@@ -2,9 +2,9 @@ import pygame
 from pygame.locals import *
 from sys import exit
 import os
+import time
 
-
-#pygame.init()
+pygame.init()
 
 largura = 640
 altura = 480
@@ -47,5 +47,9 @@ while True:
     if pygame.key.get_pressed()[K_s]:
         y = y + 4
         sprite("sprite_frente")
+    
+    if pygame.key.get_pressed()[K_SPACE]:
+        pass
+        
 
     pygame.display.update()
