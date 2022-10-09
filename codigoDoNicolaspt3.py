@@ -18,7 +18,7 @@ pontos=0
 sla = 0
 #mensagem=f'pontos:{pontos}'
 #texto_formatado=fonte.render(mensagem,False,(255,255,255))
-musica = pygame.mixer.music.load("megalovania.mp3")
+musica = pygame.mixer.music.load("mega.mp3")
 pygame.mixer.music.play(-1)
 
 pygame.display.set_caption('Jogo')
