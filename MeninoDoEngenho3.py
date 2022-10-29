@@ -1,8 +1,10 @@
+from glob import glob
 import pygame
 from pygame.locals import *
 from sys import exit
 import os
 import time
+
 
 largura = 1200
 altura = 640
@@ -21,6 +23,18 @@ nome_formatado = fonte.render(nome, False, (0,0,0))
 nada = ''
 nada_formatado = fonte.render(nome,False, (0,0,0))
 tela = pygame.display.set_mode((largura, altura))
+relogio = pygame.time.Clock()
+valor = 0
+movimentando = False
+velocity = 12
+x = largura/2
+y = altura/2
+a = 0
+b = 0
+#ret_um = pygame.Rect(x, y, 50, 81)
+#ret_dois = pygame.Rect(a + 200, b + 281, 50, 81)
+texto = False
+texto_count = 0
 pygame.display.set_caption('Jogo')
 
 
@@ -31,22 +45,6 @@ def sprite(sprite_name):
                     pygame.image.load(os.path.join('assets', sprite_name+'.png')),
                     pygame.image.load(os.path.join('assets', sprite_name+'2.png'))]
 
-relogio = pygame.time.Clock()
-
-valor = 0
-
-movimentando = False
-
-velocity = 12
-
-x = largura/2
-y = altura/2
-a = 0
-b = 0
-ret_um = pygame.Rect(x, y, 50, 81)
-ret_dois = pygame.Rect(a + 200, b + 281, 50, 81)
-texto = False
-texto_count = 0
 
 while True:
     relogio.tick(30)
@@ -55,54 +53,66 @@ while True:
     tela.blit(npc, (a + 200, b + 200))
     sprite(ultimo)
     
-    '''
-    if texto == True and texto_count <= len(mensagem):
-        texto_formatado = fonte.render(mensagem[texto_count-1], False, (255, 255, 255))
-        tela.blit(texto_formatado, (a + 175, b + 150))
-    '''
 
-    ret_um = pygame.Rect(x, y, 50, 81)
-    ret_dois = pygame.Rect(a + 200, b + 281, 50, 81)
-
-    if ret_um.colliderect(ret_dois):
-        if not texto:
-            formatacao = fonte.render(nome, False, (255,255,255))
-            tela.blit(formatacao, (a + 175, b + 150))
-        if texto == True and texto_count <= len(mensagem):
-            formatacao = fonte.render(mensagem[texto_count-1], False, (0,0,0))
-            tela.blit(formatacao, (a+175, b+150))
     
-    if not ret_um.colliderect(ret_dois) or texto_count > len(mensagem):
-        texto_count = 0
-        texto = False
+
+    def dialogo(ret1 = "ret_um", ret2 = "ret_dois", ret2_cord_a=200, ret2_cord_b = 281):
+        ret1 = pygame.Rect(x, y, 50, 81)
+        #ret2 = pygame.Rect(a + 200, b + 281, 50, 81)
+        ret2 = pygame.Rect(a+ret2_cord_a, b+ret2_cord_b, 50, 81)
+        global texto
+        global texto_count
+        if ret1.colliderect(ret2):
+            if not texto:
+                formatacao = fonte.render(nome, False, (255,255,255))
+                tela.blit(formatacao, (a + 175, b + 150))
+            if texto == True and texto_count <= len(mensagem):
+                formatacao = fonte.render(mensagem[texto_count-1], False, (0,0,0))
+                tela.blit(formatacao, (a+175, b+150))
+    
+        if not ret1.colliderect(ret2) or texto_count > len(mensagem):
+            texto_count = 0
+            texto = False
+    
+    dialogo()
+   
+    
 
     for event in pygame.event.get():
         if event.type == QUIT:
             pygame.quit()
             exit()
         
-        if event.type == pygame.KEYUP:
-            if event.key == pygame.K_a or event.key == pygame.K_d or event.key == pygame.K_w or event.key == pygame.K_s:
-                movimentando = False
-                valor = 0
+        def is_moving():
+            if event.type == pygame.KEYUP:
+                if event.key == pygame.K_a or event.key == pygame.K_d or event.key == pygame.K_w or event.key == pygame.K_s:
+                    #movimentando = False
+                    valor = 0
+                    return False
         
-        if event.type == KEYDOWN:
-            '''
-            ret_um = pygame.Rect(x, y, 50, 81)
-            ret_dois = pygame.Rect(a + 200, b + 281, 50, 81)
-
-            if ret_um.colliderect(ret_dois):
-                tela.blit(nome_formatado, (a + 175, b + 150))
-            '''
-
-            if event.key==K_e:   
+        movimentando = is_moving()
+        
+        def hook():
+            global texto
+            global texto_count
+            if event.type == KEYDOWN:
+                '''
                 ret_um = pygame.Rect(x, y, 50, 81)
-                ret_dois = pygame.Rect(a + 200, b + 281, 50, 81)             
-                if ret_um.colliderect(ret_dois) and texto_count <= len(mensagem):
-                    #tela.blit(texto_formatado, (a + 175, b + 150))
-                    texto = True
-                    texto_count += 1
+                ret_dois = pygame.Rect(a + 200, b + 281, 50, 81)
+
+                if ret_um.colliderect(ret_dois):
+                    tela.blit(nome_formatado, (a + 175, b + 150))
+                '''
+
+                if event.key==K_e:   
+                    ret_um = pygame.Rect(x, y, 50, 81)
+                    ret_dois = pygame.Rect(a + 200, b + 281, 50, 81)             
+                    if ret_um.colliderect(ret_dois) and texto_count <= len(mensagem):
+                        #tela.blit(texto_formatado, (a + 175, b + 150))
+                        texto = True
+                        texto_count += 1
                     
+        hook()
         
 
     if pygame.key.get_pressed()[K_a]:
