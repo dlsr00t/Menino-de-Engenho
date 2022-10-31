@@ -6,9 +6,11 @@ import os
 import time
 from variaveis import *
 
+pygame.display.set_caption('Menino do Engenho')
 
-pygame.display.set_caption('Jogo')
-
+rodando = False
+valor_continuar = 0
+contador = 0
 
 def sprite(sprite_name):
     global image_sprite
@@ -17,16 +19,65 @@ def sprite(sprite_name):
                     pygame.image.load(os.path.join('assets', sprite_name+'.png')),
                     pygame.image.load(os.path.join('assets', sprite_name+'2.png'))]
 
+def tela_de_start():
+    global rodando
+    global valor_continuar
+    global continuar
+    fonte_start = pygame.font.SysFont('arial', 30, True, True)
+    start = 'Pressione qualquer tecla para continuar'
+    continuar = [fonte_start.render(start, False, (branco)),
+                 fonte_start.render(start, False, (preto))] 
+    if valor_continuar >= len(continuar):
+        valor_continuar = 0
+    pressione = continuar[int(valor_continuar)]
+    continuar_rect = pressione.get_rect()
+    continuar_rect.midtop = (largura/2, 500)
+    tela.blit(pressione, continuar_rect)
+    titulo = pygame.image.load(os.path.join('assets', 'logo.png'))
+    logo = pygame.transform.scale(titulo, (520, 250))
+    logo_rect = logo.get_rect()
+    logo_rect.midtop = (largura/2, 100)
+    tela.blit(logo, logo_rect)
 
-while True:
+def instrucoes():
+    instrucoes = pygame.Rect(largura/2, altura/2, 500, 140)
+    instrucoes.midtop = (largura/2, 220)
+    pygame.draw.rect(tela, branco, instrucoes)
+    mensagem = 'Pressione W, A, S e D para andar'
+    fonte = pygame.font.SysFont('arial', 30, True, True)
+    controles = fonte.render(mensagem, False, (0, 0, 0))
+    controles_rect = controles.get_rect()
+    controles_rect.center = (largura/2, 240)
+    tela.blit(controles, controles_rect)
+    mensagem2 = 'Pressione E para interagir'
+    controles2 = fonte.render(mensagem2, False, (0, 0, 0))
+    controles_rect2 = controles2.get_rect()
+    controles_rect2.center = (largura/2, 340)
+    tela.blit(controles2, controles_rect2)
+
+
+while (rodando == False):
+    tela.fill(preto)
+    relogio.tick(30)
+    tela_de_start()
+    for event in pygame.event.get():
+            if event.type == QUIT:
+                pygame.quit()
+                exit()
+            if event.type == KEYDOWN:
+                rodando = True
+    valor_continuar += 0.075
+    pygame.display.flip()
+            
+
+
+while (rodando == True):
     relogio.tick(30)
     tela.fill(branco)
     tela.blit(background, (a, b))
     tela.blit(npc, (a + 200, b + 200))
     sprite(ultimo)
-    
 
-    
 
     def dialogo(ret1 = "ret_um", ret2 = "ret_dois", ret2_cord_a=200, ret2_cord_b = 281):
         ret1 = pygame.Rect(x, y, 50, 81)
@@ -56,6 +107,7 @@ while True:
             exit()
         
         def is_moving():
+            global valor
             if event.type == pygame.KEYUP:
                 if event.key == pygame.K_a or event.key == pygame.K_d or event.key == pygame.K_w or event.key == pygame.K_s:
                     #movimentando = False
@@ -71,11 +123,11 @@ while True:
                 '''
                 ret_um = pygame.Rect(x, y, 50, 81)
                 ret_dois = pygame.Rect(a + 200, b + 281, 50, 81)
-
                 if ret_um.colliderect(ret_dois):
                     tela.blit(nome_formatado, (a + 175, b + 150))
                 '''
-
+                global contador
+                contador +=1
                 if event.key==K_e:   
                     ret_um = pygame.Rect(x, y, 50, 81)
                     ret_dois = pygame.Rect(a + 200, b + 281, 50, 81)             
@@ -83,6 +135,7 @@ while True:
                         #tela.blit(texto_formatado, (a + 175, b + 150))
                         texto = True
                         texto_count += 1
+                        
                     
         hook()
         
@@ -131,16 +184,16 @@ while True:
     imagem = pygame.transform.scale(imagem, (50, 81))
 
     tela.blit(imagem, (x, y))
-
-
+    
+    if contador <= 0:
+        instrucoes()
+        
     '''
     ret_um = pygame.Rect(x, y, 50, 81)
     ret_dois = pygame.Rect(a + 200, b + 281, 50, 81)
-
     if ret_um.colliderect(ret_dois):     
         tela.blit(nome_formatado, (a + 175, b + 150))
     '''
     
     #tela.blit(nome_formatado, (a + 175, b + 150))
     pygame.display.flip()
-

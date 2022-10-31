@@ -31,3 +31,4 @@ b = 0
 #ret_dois = pygame.Rect(a + 200, b + 281, 50, 81)
 texto = False
 texto_count = 0
+preto = (0,0,0)
