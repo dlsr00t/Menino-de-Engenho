@@ -2,6 +2,7 @@ import pygame
 from pygame.locals import*
 from sys import exit
 from random import randint
+import os
 
 pygame.init()
 
@@ -18,7 +19,7 @@ pontos=0
 sla = 0
 #mensagem=f'pontos:{pontos}'
 #texto_formatado=fonte.render(mensagem,False,(255,255,255))
-musica = pygame.mixer.music.load("mega.mp3")
+musica = pygame.mixer.music.load(os.path.join('assets', "mega"+'.mp3'))
 pygame.mixer.music.play(-1)
 
 pygame.display.set_caption('Jogo')

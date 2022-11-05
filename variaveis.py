@@ -1,5 +1,6 @@
 import pygame
 import os
+import time
 
 
 largura = 1200
@@ -32,3 +33,10 @@ b = 0
 texto = False
 texto_count = 0
 preto = (0,0,0)
+rodando = False
+valor_continuar = 0
+contador = 0
+inicio = time.time()
+jft = 0
+jfc = 0
+scene = False
