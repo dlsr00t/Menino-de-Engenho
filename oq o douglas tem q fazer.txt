@@ -1,0 +1,16 @@
+O que o Douglas tem que fazer:
+
+1 - fazer o sistema de diálogo de todos os personagens
+
+2 - fazer o sistema do canário 
+
+3 -  fazer o contador do canário só aparecer quando você encostar nele
+
+4 - quando você falar pelo menos uma vez com todos os personagens e pegar o canário três vezes, 
+o sprite do personagem muda para o próximo, os diálogos mudam e as mudanças acontecem em relação aos personagens
+
+5 - fazer o som do trem tocar uma vez só durante a parte do trem
+
+6 - fazer um sistema de colisão para o player não passar por cima dos personagens
+
+7 - fazer uma colisão para o canário não aparecer nos personagens

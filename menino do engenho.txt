@@ -1,0 +1,41 @@
+personagens 1o fase:
+->tio juca
+  diálogo = "Está gostando do engenho do seu avô, meu sobrinho?"
+->vô josé paulino
+  diálogo = "Deus te abençõe, meu neto", "Um dia desses te levo para conhecer o engenho inteiro"
+->tia Maria
+  diálogo = "Não precisa ficar triste",  "Agora nós seremos sua família"
+->tia Sinhazinha
+  diálogo = "Espero que você seja um menino bonzinho"
+->primos
+  diálogo = "Vamos brincar, Carlinhos!"
+
+quando falar com todos os personagens e pagar o canário 3x vai para a segunda fase:
+
+personagens 2a fase:
+->tio juca
+  diálogo = "Já se fazem quatro anos desde que você chegou, meu sobrinho", "Como o tempo passa"
+->vô josé paulino
+  diálogo = "Já está com oito anos, em?", "Você cresceu muito rápido"
+->tia Maria
+  diálogo = "Que bom que está se dando bem com sua prima", "Ela veio de muito longe, e não vai ficar muito tempo aqui"
+->tia Sinhazinha
+  diálogo = "Você está ficando cada vez mais travesso, moleque"
+->primos
+  diálogo = "Aí está você, Carlinhos", "Precisamos te contar sobre tudo o que aconteceu no colégio"
+->prima Maria Clara (personagem novo)
+  diálogo = "Oi Carlinhos", "Nós podíamos fazer um piquenique nos cajuzeiros"
+
+quando falar com todos os personagens e pagar o canário 3x vai para a terceira fase:
+
+personagens 3a fase:
+->tio juca
+  diálogo = "Coitado de você, menino", "Tem estado tão triste desde que sua prima partiu e sua tia se casou"
+->vô josé paulino
+  diálogo = "Parece que está na hora de você ir para o cólegio", "É o melhor a se fazer"
+->tia Sinhazinha
+  diálogo = "Mal posso esperar para te botar no colégio", "Já está com doze anos e não sabe de nada, só de fazer besteiras"
+->primos
+  diálogo = "Ficamos sabendo que você vai para o colégio, Carlinhos", "Boa sorte"
+
+quando falar com todos os personagens e pegar o canário 3x acaba o jogo
