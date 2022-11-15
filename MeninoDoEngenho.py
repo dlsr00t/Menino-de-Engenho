@@ -174,6 +174,7 @@ def movimento():
     tela.blit(imagem, (x, y))
 
 
+
 def tr(callback, trilha = "mega", play = True):
     global jft
     global musica
