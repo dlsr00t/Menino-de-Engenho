@@ -665,7 +665,7 @@ while (rodando == True):
                 tela.blit(tia_sinhazinha, (a+700, b+50))
                 tela.blit(primos, (a+900,b+350))
                 sprite(ultimo, "12")
-                time.sleep(1)
+                #time.sleep(1)
                 dialogo(info_tio_juca, "cont_tio_juca")
                 zeradora(info_tio_juca, "cont_tio_juca")
                 dialogo(info_vo_jose_paulino, "cont_vo_jose_paulino")
