@@ -71,7 +71,7 @@ nome = "tio juca"
 
 
 info_tio_juca = {
-"nome":"tio juca",
+"nome":"Tio Juca",
 "posicao":((a + 200, b + 200)),
 "scale":pygame.transform.scale(img_tio_juca, (50, 81)),
 "mensagem":[["Está gostando do engenho do seu avô, meu sobrinho?", ""], ["Já se fazem quatro anos desde que você chegou, meu sobrinho", "Como o tempo passa", ""], ["Coitado de você, menino", "Tem estado tão triste desde que sua prima partiu e sua tia se casou", ""]],
@@ -80,7 +80,7 @@ info_tio_juca = {
 }
 
 info_vo_jose_paulino = {
-"nome":"vo jose paulino",
+"nome":"Vô José Paulino",
 "posicao":((a + 300, b + 400)),
 "scale":pygame.transform.scale(img_vo_jose_paulino, (50, 81)),
 "mensagem":[["Deus te abençõe, meu neto", "Um dia desses te levo para conhecer o engenho inteiro", ""], ["Já está com oito anos, em?", "Você cresceu muito rápido", ""],["Parece que está na hora de você ir para o cólegio", "É o melhor a se fazer", ""]],
@@ -90,7 +90,7 @@ info_vo_jose_paulino = {
 }
 
 info_tia_maria = {
-    "nome": "tia maria",
+    "nome": "Tia Maria",
     "posicao": ((a+400, b+50)),
     "scale":pygame.transform.scale(img_tia_maria, (50,81)),
     "mensagem":[["Não precisa ficar triste",  "Agora nós seremos sua família", ""],["Que bom que está se dando bem com sua prima", "Ela veio de muito longe, e não vai ficar muito tempo aqui", ""]],
@@ -99,21 +99,21 @@ info_tia_maria = {
 
 
 info_tia_sinhazinha = {
-    "nome": "tia sinhazinha",
+    "nome": "Tia Sinhazinha",
     "posicao": ((a+700, b+50)),
     "scale":pygame.transform.scale(img_tia_sinhazinha, (50,81)),
     "mensagem":[["Espero que você seja um menino bonzinho", ""], ["Você está ficando cada vez mais travesso, moleque",""], ["Mal posso esperar para te botar no colégio", "Já está com doze anos e não sabe de nada, só de fazer besteiras", ""]],
     "contadora":0
 }
 info_primos = {
-    "nome": "primos",
+    "nome": "Primos",
     "posicao": ((a+900, b+350)),
     "scale":pygame.transform.scale(img_primos, (100,81)),
     "mensagem":[["Vamos brincar, Carlinhos!",""],["Aí está você, Carlinhos", "Precisamos te contar sobre tudo o que aconteceu no colégio", ""], ["Ficamos sabendo que você vai para o colégio, Carlinhos", "Boa sorte", ""]]
 }
 
 info_prima_maria_clara = {
-    "nome": "prima maria clara",
+    "nome": "Prima Maria Clara",
     "posicao": ((a+650, b+450)),
     "mensagem":["Oi Carlinhos", "Nós podíamos fazer um piquenique nos cajuzeiros", ""]
 }
