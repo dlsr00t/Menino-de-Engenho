@@ -168,5 +168,3 @@ donda2=False
 bateu = ''
 tava_no_elif = False
 heartless = False
-
-

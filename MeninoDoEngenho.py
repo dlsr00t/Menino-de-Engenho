@@ -38,6 +38,9 @@ gambiarra2 = 0
 c = 1300
 a = 0 
 b = 0
+x_trem_voltando = -2800
+gambiarra4 = 0
+contador_som_trem2 = 0
 
 posicoesx = []
 posicoesy = []
@@ -152,6 +155,13 @@ def train():
     trem = pygame.transform.scale(trem, (2800, 640))
     tela.blit(trem, (c, 0))
 
+def train2():
+    paisagem_dia = pygame.image.load(os.path.join('assets', 'paisagem_dia.png'))
+    paisagem_dia = pygame.transform.scale(paisagem_dia, (1200, 640))
+    tela.blit(paisagem_dia, (0, 0))
+    trem_voltando = pygame.image.load(os.path.join('assets', 'trem_voltando.png'))
+    trem_voltando = pygame.transform.scale(trem_voltando, (2800, 640))
+    tela.blit(trem_voltando, (x_trem_voltando, 0))
 
 def tiro():
     barulho_tiro = pygame.mixer.Sound(os.path.join('assets', 'tiro.mp3'))
@@ -187,7 +197,7 @@ def dialogo(info, contadora):
         if ret1.colliderect(ret2):
             #print(info["tst"])
             if not texto_tio_juca:
-                formatacao = fonte.render(info["nome"], False, (255,255,255))
+                formatacao = fonte.render(info["nome"], False, (0,0,0))
                 tela.blit(formatacao, (a+info["posicao"][0]-7, b+info["posicao"][1]-30))
             if texto_tio_juca == True and cont_tio_juca <= len(info["mensagem"][fases]):
                 formatacao = fonte.render(info["mensagem"][fases][cont_tio_juca-1], False, (0,0,0))
@@ -199,7 +209,7 @@ def dialogo(info, contadora):
         if ret1.colliderect(ret2):
             #print(info["tst"])
             if not texto_vo_jose_paulino:
-                formatacao = fonte.render(info["nome"], False, (255,255,255))
+                formatacao = fonte.render(info["nome"], False, (0,0,0))
                 tela.blit(formatacao, (a+info["posicao"][0]-40, b+info["posicao"][1]-30))
             if texto_vo_jose_paulino == True and cont_vo_jose_paulino <= len(info["mensagem"][fases]):
                 formatacao = fonte.render(info["mensagem"][fases][cont_vo_jose_paulino-1], False, (0,0,0))
@@ -211,7 +221,7 @@ def dialogo(info, contadora):
         if ret1.colliderect(ret2):
             #print(info["tst"])
             if not texto_tia_maria:
-                formatacao = fonte.render(info["nome"], False, (255,255,255))
+                formatacao = fonte.render(info["nome"], False, (0,0,0))
                 tela.blit(formatacao, (a+info["posicao"][0]-15, b+info["posicao"][1]-30))
             if texto_tia_maria == True and cont_tia_maria <= len(info["mensagem"][fases]):
                 formatacao = fonte.render(info["mensagem"][fases][cont_tia_maria-1], False, (0,0,0))
@@ -223,7 +233,7 @@ def dialogo(info, contadora):
         if ret1.colliderect(ret2):
             #print(info["tst"])
             if not texto_tia_sinhazinha:
-                formatacao = fonte.render(info["nome"], False, (255,255,255))
+                formatacao = fonte.render(info["nome"], False, (0,0,0))
                 tela.blit(formatacao, (a+info["posicao"][0]-35, b+info["posicao"][1]-30))
             if texto_tia_sinhazinha == True and cont_tia_sinhazinha <= len(info["mensagem"][fases]):
                 formatacao = fonte.render(info["mensagem"][fases][cont_tia_sinhazinha-1], False, (0,0,0))
@@ -235,7 +245,7 @@ def dialogo(info, contadora):
             #print(info["tst"])
 
             if not texto_primos:
-                formatacao = fonte.render(info["nome"], False, (255,255,255))
+                formatacao = fonte.render(info["nome"], False, (0,0,0))
                 tela.blit(formatacao, (a+info["posicao"][0]+15, b+info["posicao"][1]-65))
             if texto_primos == True and cont_primos <= len(info["mensagem"][fases]):
                 formatacao = fonte.render(info["mensagem"][fases][cont_primos-1], False, (0,0,0))
@@ -249,7 +259,7 @@ def dialogo(info, contadora):
         if ret1.colliderect(ret2):
             #print(info["tst"])
             if not texto_prima_maria_clara:
-                formatacao = fonte.render(info["nome"], False, (255,255,255))
+                formatacao = fonte.render(info["nome"], False, (0,0,0))
                 tela.blit(formatacao, (a+info["posicao"][0]-35, b+info["posicao"][1]-30))
             if texto_prima_maria_clara == True and cont_prima_maria_clara <= len(info["mensagem"]):
                 formatacao = fonte.render(info["mensagem"][cont_prima_maria_clara-1], False, (0,0,0))
@@ -574,6 +584,8 @@ while (rodando == True):
             if event.type == QUIT:
                 pygame.quit()
                 exit()
+            if event.type == KEYDOWN:
+                valor_cutscene = len(cena) - 1
         pygame.display.flip()
 
     if (valor_cutscene == 5):
@@ -596,6 +608,8 @@ while (rodando == True):
                 if event.type == QUIT:
                     pygame.quit()
                     exit()
+                if event.type == KEYDOWN:
+                    c = -2800
             pygame.display.flip()
         if c + 2800 <= 0:
             gambiarra2 += 1
@@ -678,8 +692,30 @@ while (rodando == True):
                 zeradora(info_primos, "cont_primos")
             
         
-            elif fases == 3:###FIM DO JOGO
-                exit()
+            while (fases == 3):###FIM DO JOGO
+                if gambiarra4 <= 0:
+                    train2()
+                    x_trem_voltando += 15
+                    while contador_som_trem2 == 0:
+                        trem_som2 = pygame.mixer.Sound(os.path.join('assets', 'trem.wav'))
+                        trem_som2.play()
+                        contador_som_trem2+=1
+                    for event in pygame.event.get():
+                        if event.type == QUIT:
+                            pygame.quit()
+                            exit()
+                        if event.type == KEYDOWN:
+                            x_trem_voltando = 1200
+                    pygame.display.flip()
+                if x_trem_voltando == 1200:
+                    print('acabou')
+                    gambiarra4 += 1
+                    exit()
+                if x_trem_voltando > 1200:
+                    musica2 = pygame.mixer.music.load(os.path.join('assets','Kanye West - Heartless (8-bit Cover).mp3'))
+                    pygame.mixer.music.play()
+                    
+
         
         
         
@@ -940,229 +976,3 @@ while (rodando == True):
                 print(fases)
             pygame.display.flip()
         
-
-        
-        
-        
-        
-        
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
