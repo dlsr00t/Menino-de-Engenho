@@ -663,7 +663,7 @@ while (rodando == True):
                 tela.blit(vo_jose_paulino, (a+300, b+400))
                 #tela.blit(tia_maria, (a+400, b+50))
                 tela.blit(tia_sinhazinha, (a+700, b+50))
-                tela.blit(primos, (a+900,b+350))
+                tela.blit(primos, (a+900,b+300))
                 sprite(ultimo, "12")
                 #time.sleep(1)
                 dialogo(info_tio_juca, "cont_tio_juca")
