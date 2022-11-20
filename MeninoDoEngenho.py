@@ -714,8 +714,8 @@ while (rodando == True):
                     exit()
                     
                 if x_trem_voltando >= 1200:
-                    print('acabou')
-                    gambiarra4 += 1
+                    #print('acabou')
+                    #gambiarra4 += 1
                     if contador_som_trem2 ==1:
                         pygame.mixer.music.stop()
                         contador_som_trem2+=1
