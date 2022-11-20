@@ -168,3 +168,9 @@ donda2=False
 bateu = ''
 tava_no_elif = False
 heartless = False
+
+
+mensagemc = f'Canários: {pontos}'
+texto_formatado = fonte.render(mensagemc,False,(0, 0, 0))
+texto_rect = texto_formatado.get_rect()
+texto_rect.center = (largura/2, 100)

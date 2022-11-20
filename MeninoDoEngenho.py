@@ -567,6 +567,7 @@ while (rodando == False):
         if event.type == KEYDOWN:
             rodando = True
             pygame.mixer.music.stop()
+            heartless = False
 
     valor_continuar += 0.1 
 
@@ -601,8 +602,8 @@ while (rodando == True):
             train()
             c -= 15
             while contador_som_trem == 0:
-                trem_som = pygame.mixer.Sound(os.path.join('assets', 'trem.wav'))
-                trem_som.play()
+                trem_som = pygame.mixer.music.load(os.path.join('assets', 'trem.wav'))
+                pygame.mixer.music.play()
                 contador_som_trem+=1
             for event in pygame.event.get():
                 if event.type == QUIT:
@@ -610,6 +611,7 @@ while (rodando == True):
                     exit()
                 if event.type == KEYDOWN:
                     c = -2800
+                    pygame.mixer.music.stop()
             pygame.display.flip()
         if c + 2800 <= 0:
             gambiarra2 += 1
@@ -697,23 +699,35 @@ while (rodando == True):
                     train2()
                     x_trem_voltando += 15
                     while contador_som_trem2 == 0:
-                        trem_som2 = pygame.mixer.Sound(os.path.join('assets', 'trem.wav'))
-                        trem_som2.play()
+                        trem_som2 = pygame.mixer.music.load(os.path.join('assets', 'trem.wav'))
+                        pygame.mixer.music.play()
                         contador_som_trem2+=1
                     for event in pygame.event.get():
                         if event.type == QUIT:
                             pygame.quit()
                             exit()
-                        if event.type == KEYDOWN:
+                        if event.type == KEYDOWN and x_trem_voltando> 200:
                             x_trem_voltando = 1200
                     pygame.display.flip()
+                
                 if x_trem_voltando == 1200:
+                    exit()
+                    
+                if x_trem_voltando >= 1200:
                     print('acabou')
                     gambiarra4 += 1
-                    exit()
-                if x_trem_voltando > 1200:
-                    musica2 = pygame.mixer.music.load(os.path.join('assets','Kanye West - Heartless (8-bit Cover).mp3'))
-                    pygame.mixer.music.play()
+                    if contador_som_trem2 ==1:
+                        pygame.mixer.music.stop()
+                        contador_som_trem2+=1
+                    
+
+                
+                
+                    #pygame.mixer.music.stop()
+                    if heartless == False:
+                        musica2 = pygame.mixer.music.load(os.path.join('assets','Kanye West - Heartless (8-bit Cover).mp3'))
+                        pygame.mixer.music.play()
+                        heartless = True
                     
 
         
@@ -753,6 +767,10 @@ while (rodando == True):
             
             elif pygame.key.get_pressed()[K_a]:    
                 if x > a :
+                    #if (not False in falou.values()):
+                    #    x-=1.5
+                    #    a+=1.5
+                    
                     x -= 4
                     movimentando = True
                     #sprite("sprite_esquerda")
@@ -771,6 +789,10 @@ while (rodando == True):
                 '''
             elif pygame.key.get_pressed()[K_d]:
                 if x + 50 < a + 1200 :
+                    #if (not False in falou.values()):
+                    #    x+=1.5
+                    #    a-=1.5
+
                     x += 4
                     movimentando = True
                     #sprite("sprite_direita")
@@ -799,6 +821,9 @@ while (rodando == True):
                 # so pra ficar registrado se eu der um cntrl z
         
                 if y > b :
+                    #if (not False in falou.values()):
+                    #    y-=1.5
+                    #    b+=1.5
                     #sprite("sprite_cima")
                     ultimo = "sprite_cima"
                     #print("to aqui")
@@ -811,6 +836,9 @@ while (rodando == True):
         
             elif pygame.key.get_pressed()[K_s]:
                 if y + 81 < b + 640 :
+                    #if (not False in falou.values()):
+                    #    y+=1.5
+                    #    b-=1.5
                     #sprite("sprite_baixo")
                     ultimo = "sprite_baixo"
                     y += 4
@@ -846,10 +874,7 @@ while (rodando == True):
                 bateu = 'esquerda'
                 print("colidiu: ", donda)
             elif ret1.collidelist(lista_colisao)>=0 and donda == 'd':
-                #x=x-5
-                #print("colidiu")
-                movimentando = False
-                bateu='direita'
+                #x=x-5120
                 print("colidiu: ", donda)
             elif ret1.collidelist(lista_colisao)>=0 and donda == 'w':
                 #y=y+5
@@ -871,6 +896,10 @@ while (rodando == True):
             '''
         
             if movimentando == True:
+                if(not False in falou.values()):
+                    #valor+=0.25
+                    pass
+                
                 valor += 0.25
             else:
                 valor = 0
@@ -887,12 +916,12 @@ while (rodando == True):
             if ret_um.colliderect(ret_dois):     
                 tela.blit(nome_formatado, (a + 175, b + 150))
                 '''
-            if (False in falou.values()):
-                pass
-            else:
+            if (not False in falou.values()):
+                
+            
                 passa = True
                 print("haha")
-                relogio.tick(30)
+                #relogio.tick(30)
                 mensagemc = f'Canários: {pontos}'
                 texto_formatado = fonte.render(mensagemc,False,(0, 0, 0))
                 texto_rect = texto_formatado.get_rect()
@@ -940,7 +969,7 @@ while (rodando == True):
                     aparecer = False
                     print(aparecer)
                     texto_formatado = fonte.render(nada, False, (255,255,255))
-                elif pontos >= 3:
+                if pontos >= 3:
                     x_marrom = 900 
                     y_marrom = 200
                     
