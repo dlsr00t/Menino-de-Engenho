@@ -46,7 +46,7 @@ posicoesx = []
 posicoesy = []
 nnpode = [[a + 200, b + 200],[a + 300, b + 400],[a+400, b+50],[a+700, b+50],[a+900, b+350]]
 contador_som_trem = 0
-
+y_creditos = 1200
 donda = ''
 def sprite(sprite_name, age):
     global image_sprite
@@ -59,7 +59,9 @@ def tela_de_start():
     global rodando
     global valor_continuar
     global continuar
-    tela.fill(preto)
+    fundo = pygame.image.load(os.path.join('assets', 'muro.png'))
+    fundo = pygame.transform.scale(fundo, (1200, 640))
+    tela.blit(fundo, (0, 0))
     fonte_start = pygame.font.SysFont('arial', 30, True, True)
     start = 'Pressione qualquer tecla para continuar'
     nada = ' '
@@ -156,6 +158,7 @@ def train():
     tela.blit(trem, (c, 0))
 
 def train2():
+    global paisagem_dia
     paisagem_dia = pygame.image.load(os.path.join('assets', 'paisagem_dia.png'))
     paisagem_dia = pygame.transform.scale(paisagem_dia, (1200, 640))
     tela.blit(paisagem_dia, (0, 0))
@@ -167,6 +170,63 @@ def tiro():
     barulho_tiro = pygame.mixer.Sound(os.path.join('assets', 'tiro.mp3'))
     barulho_tiro.play()
 
+def creditos():
+    mensagem = 'Feito por:'
+    titulo = pygame.image.load(os.path.join('assets', 'logo.png'))
+    logo = pygame.transform.scale(titulo, (520, 250))
+    logo_rect = logo.get_rect()
+    logo_rect.midtop = (largura/2, y_creditos - 400)
+    tela.blit(logo, logo_rect)
+    fonte = pygame.font.SysFont('arial', 60, True, True)
+    controles = fonte.render(mensagem, False, (0, 0, 0))
+    controles_rect = controles.get_rect()
+    controles_rect.center = (largura/2, y_creditos)
+    tela.blit(controles, controles_rect)
+    mensagem2 = 'Bernardo Grijó Fontes'
+    controles2 = fonte.render(mensagem2, False, (0, 0, 0))
+    controles_rect2 = controles2.get_rect()
+    controles_rect2.center = (largura/2, y_creditos + 90)
+    tela.blit(controles2, controles_rect2)
+    mensagem3 = 'Douglas Luiz da Silva'
+    controles3 = fonte.render(mensagem3, False, (0, 0, 0))
+    controles_rect3 = controles3.get_rect()
+    controles_rect3.center = (largura/2, y_creditos + 90*2)
+    tela.blit(controles3, controles_rect3)
+    mensagem4 = 'Nicolas Araújo Porto Costa Pereira'
+    controles4 = fonte.render(mensagem4, False, (0, 0, 0))
+    controles_rect4 = controles4.get_rect()
+    controles_rect4.center = (largura/2, y_creditos + 90*3)
+    tela.blit(controles4, controles_rect4)
+    mensagem5 = 'Rafael Silva Avila'
+    controles5 = fonte.render(mensagem5, False, (0, 0, 0))
+    controles_rect5 = controles5.get_rect()
+    controles_rect5.center = (largura/2, y_creditos + 90*4)
+    tela.blit(controles5, controles_rect5)
+    mensagem6 = 'Músicas usadas:'
+    controles6 = fonte.render(mensagem6, False, (0, 0, 0))
+    controles_rect6 = controles6.get_rect()
+    controles_rect6.center = (largura/2, y_creditos + 90*6)
+    tela.blit(controles6, controles_rect6)
+    mensagem7 = 'Kanye West - Heartless'
+    controles7 = fonte.render(mensagem7, False, (0, 0, 0))
+    controles_rect7 = controles7.get_rect()
+    controles_rect7.center = (largura/2, y_creditos + 90*7)
+    tela.blit(controles7, controles_rect7)
+    mensagem8 = 'Kanye West - Wolves'
+    controles8 = fonte.render(mensagem8, False, (0, 0, 0))
+    controles_rect8 = controles8.get_rect()
+    controles_rect8.center = (largura/2, y_creditos + 90*8)
+    tela.blit(controles8, controles_rect8)
+    mensagem9 = 'Baseado na obra de'
+    controles9 = fonte.render(mensagem9, False, (0, 0, 0))
+    controles_rect9 = controles9.get_rect()
+    controles_rect9.center = (largura/2, y_creditos + 90*10)
+    tela.blit(controles9, controles_rect9)
+    mensagem10 = 'José Lins do Rego'
+    controles10 = fonte.render(mensagem10, False, (0, 0, 0))
+    controles_rect10 = controles10.get_rect()
+    controles_rect10.center = (largura/2, y_creditos + 90*11)
+    tela.blit(controles10, controles_rect10)
 
 def dialogo(info, contadora):
     global ret1
@@ -749,8 +809,16 @@ while (rodando == True):
                     if contador_som_trem2 ==1:
                         pygame.mixer.music.stop()
                         contador_som_trem2+=1
-                    
-
+                
+                while x_trem_voltando > 1200:
+                    tela.blit(paisagem_dia, (0, 0))
+                    creditos()
+                    y_creditos -= 3
+                    for event in pygame.event.get():
+                        if event.type == QUIT:
+                            pygame.quit()
+                            exit()
+                    pygame.display.flip()
                 
                 
                     #pygame.mixer.music.stop()
@@ -1034,4 +1102,3 @@ while (rodando == True):
                 #tela.blit(nome_formatado, (a + 175, b + 150))
                 print(fases)
             pygame.display.flip()
-        
