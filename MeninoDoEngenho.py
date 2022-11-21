@@ -203,6 +203,8 @@ def dialogo(info, contadora):
                 formatacao = fonte.render(info["mensagem"][fases][cont_tio_juca-1], False, (0,0,0))
                 if fases == 1 and cont_tio_juca ==2 :
                     tela.blit(formatacao, (a+info["posicao"][0]-90, b+info["posicao"][1]-30))
+                elif fases == 2 and cont_tio_juca == 1:
+                    tela.blit(formatacao, (a+info["posicao"][0]-90, b+info["posicao"][1]-30))
                 else:
                     tela.blit(formatacao, (a+info["posicao"][0]-200, b+info["posicao"][1]-30))
     if contadora == "cont_vo_jose_paulino":
@@ -213,10 +215,20 @@ def dialogo(info, contadora):
                 tela.blit(formatacao, (a+info["posicao"][0]-40, b+info["posicao"][1]-30))
             if texto_vo_jose_paulino == True and cont_vo_jose_paulino <= len(info["mensagem"][fases]):
                 formatacao = fonte.render(info["mensagem"][fases][cont_vo_jose_paulino-1], False, (0,0,0))
-                if cont_vo_jose_paulino ==1 or fases==1:
+                if cont_vo_jose_paulino ==1 and fases==1:
                     tela.blit(formatacao, (a+info["posicao"][0]-90, b+info["posicao"][1]-30))
+                elif cont_vo_jose_paulino == 2 and fases==1:
+                    tela.blit(formatacao, (a+info["posicao"][0]-90, b+info["posicao"][1]-30))
+                elif fases == 2 and cont_vo_jose_paulino ==1:
+                    tela.blit(formatacao, (a+info["posicao"][0]-190, b+info["posicao"][1]-30))
+                elif fases == 2 and cont_vo_jose_paulino == 2:
+                    tela.blit(formatacao, (a+info["posicao"][0]-50, b+info["posicao"][1]-30))
+                elif fases == 0 and cont_vo_jose_paulino == 1:
+                    tela.blit(formatacao, (a+info["posicao"][0]-90, b+info["posicao"][1]-30))
+                elif fases == 0 and cont_vo_jose_paulino == 2:
+                    tela.blit(formatacao, (a+info["posicao"][0]-190, b+info["posicao"][1]-30))
                 else:
-                    tela.blit(formatacao, (a+info["posicao"][0]-200, b+info["posicao"][1]-30))
+                    tela.blit(formatacao, (a+info["posicao"][0]-90, b+info["posicao"][1]-30))
     if contadora == "cont_tia_maria":
         if ret1.colliderect(ret2):
             #print(info["tst"])
@@ -225,10 +237,17 @@ def dialogo(info, contadora):
                 tela.blit(formatacao, (a+info["posicao"][0]-15, b+info["posicao"][1]-30))
             if texto_tia_maria == True and cont_tia_maria <= len(info["mensagem"][fases]):
                 formatacao = fonte.render(info["mensagem"][fases][cont_tia_maria-1], False, (0,0,0))
-                if cont_tia_maria == 1:
+                
+                if fases == 1 and cont_tia_maria == 1:
+                    tela.blit(formatacao, (a+info["posicao"][0]-170, b+info["posicao"][1]-30))
+                elif fases == 1 and cont_tia_maria ==2:
+                    tela.blit(formatacao, (a+info["posicao"][0]-200, b+info["posicao"][1]-30))
+                elif cont_tia_maria == 1 and fases == 0:
                     tela.blit(formatacao, (a+info["posicao"][0]-80, b+info["posicao"][1]-30))
                 else:
-                    tela.blit(formatacao, (a+info["posicao"][0]-110, b+info["posicao"][1]-30))      
+                    tela.blit(formatacao, (a+info["posicao"][0]-110, b+info["posicao"][1]-30))
+
+                      
     if contadora == "cont_tia_sinhazinha":
         if ret1.colliderect(ret2):
             #print(info["tst"])
@@ -237,8 +256,12 @@ def dialogo(info, contadora):
                 tela.blit(formatacao, (a+info["posicao"][0]-35, b+info["posicao"][1]-30))
             if texto_tia_sinhazinha == True and cont_tia_sinhazinha <= len(info["mensagem"][fases]):
                 formatacao = fonte.render(info["mensagem"][fases][cont_tia_sinhazinha-1], False, (0,0,0))
-
-                tela.blit(formatacao, (a+info["posicao"][0]-140, b+info["posicao"][1]-30))
+                if fases == 1:
+                    tela.blit(formatacao, (a+info["posicao"][0]-180, b+info["posicao"][1]-30))
+                elif fases == 2 and cont_tia_sinhazinha == 2:
+                    tela.blit(formatacao, (a+info["posicao"][0]-220, b+info["posicao"][1]-30))
+                else:
+                    tela.blit(formatacao, (a+info["posicao"][0]-140, b+info["posicao"][1]-30))
     if contadora == "cont_primos":
         ret2 = pygame.Rect(a+info["posicao"][0]+3, b+info["posicao"][1]+81, 90, 81)
         if ret1.colliderect(ret2):
@@ -249,25 +272,32 @@ def dialogo(info, contadora):
                 tela.blit(formatacao, (a+info["posicao"][0]+15, b+info["posicao"][1]-65))
             if texto_primos == True and cont_primos <= len(info["mensagem"][fases]):
                 formatacao = fonte.render(info["mensagem"][fases][cont_primos-1], False, (0,0,0))
-                
-                if fases == 1 and cont_primos == 2:
-                    tela.blit(formatacao, (a+info["posicao"][0]-140, b+info["posicao"][1]-65))
-                else:
+                if fases == 0:
                     tela.blit(formatacao, (a+info["posicao"][0]-70, b+info["posicao"][1]-60))
+                if fases == 1 and cont_primos == 1:
+                    tela.blit(formatacao, (a+info["posicao"][0]-50, b+info["posicao"][1]-65))
+                if fases == 1 and cont_primos == 2:
+                    tela.blit(formatacao, (a+info["posicao"][0]-200, b+info["posicao"][1]-60))
+                if fases == 2 and cont_primos == 1:
+                    tela.blit(formatacao, (a+info["posicao"][0]-200, b+info["posicao"][1]-65))
+                if fases == 2 and cont_primos == 2:
+                    tela.blit(formatacao, (a+info["posicao"][0]-5, b+info["posicao"][1]-65))
+                #else:
+                #    tela.blit(formatacao, (a+info["posicao"][0]-70, b+info["posicao"][1]-60))
     
     if contadora == "cont_prima_maria_clara":
         if ret1.colliderect(ret2):
             #print(info["tst"])
             if not texto_prima_maria_clara:
                 formatacao = fonte.render(info["nome"], False, (0,0,0))
-                tela.blit(formatacao, (a+info["posicao"][0]-35, b+info["posicao"][1]-30))
+                tela.blit(formatacao, (a+info["posicao"][0]-50, b+info["posicao"][1]-30))
             if texto_prima_maria_clara == True and cont_prima_maria_clara <= len(info["mensagem"]):
                 formatacao = fonte.render(info["mensagem"][cont_prima_maria_clara-1], False, (0,0,0))
                 if cont_prima_maria_clara == 1:
                     tela.blit(formatacao, (a+info["posicao"][0]-35, b+info["posicao"][1]-30))
                 else:
-                    tela.blit(formatacao, (a+info["posicao"][0]-140, b+info["posicao"][1]-30))
-
+                    tela.blit(formatacao, (a+info["posicao"][0]-170, b+info["posicao"][1]-30))
+                
 
     #if texto_count > len(info["mensagem"]):
     #if texto_count > len(info["mensagem"]):
@@ -725,7 +755,7 @@ while (rodando == True):
                 
                     #pygame.mixer.music.stop()
                     if heartless == False:
-                        musica2 = pygame.mixer.music.load(os.path.join('assets','Kanye West - Heartless (8-bit Cover).mp3'))
+                        musica2 = pygame.mixer.music.load(os.path.join('assets','Kanye West - Wolves (8 Bit Remix).mp3'))
                         pygame.mixer.music.play()
                         heartless = True
                     
